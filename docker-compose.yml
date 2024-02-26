@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  react-app:
+    container_name: sample
+    image: sample
+    build:
+      context: .
+      target: development
+    volumes:
+      - ./src:/react-app/src
+    ports:
+      - 3000:3000
