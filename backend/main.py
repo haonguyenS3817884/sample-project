@@ -1,4 +1,5 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+import uvicorn
 
 app = FastAPI()
 
@@ -37,3 +38,6 @@ async def websocket_index(websocket: WebSocket, client_id: str):
     except WebSocketDisconnect:
         websocket_service.disconnect(websocket)
         await websocket_service.broadcast_message("Client {client_id} has left the conversation".format(client_id=client_id))
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
